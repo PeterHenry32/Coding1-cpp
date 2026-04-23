@@ -33,10 +33,16 @@
             }
             else if(input == "edit") {
                 //show them list of games
-                cout << "here are your friends:\n";
+                cout << "here are your Games:\n";
             for(int i = 0; i < favs.size(); i++) {
                 cout << favs[i] << ".\n";
-            }  
+            } 
+                         cout << "Please choose a Game to change:\n";
+            vector<string>::iterator chosenfavs;
+
+            string input;
+            cin >> input;
+
             }
 
             else if(input == "show") {
