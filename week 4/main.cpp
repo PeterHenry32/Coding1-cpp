@@ -1,21 +1,22 @@
-//Peter Henry
-
+// Peter Henry Coding 1 week 15
+// classes
 
 #include <iostream>
 #include <string>
 using namespace std;
 
-//classes are custom variables types that have their on 
-//variables and functions
+// classes are custom variables types that have their own
+// variables and functions
 
+// constructors
+// getters and setters (privacy)
+// instances
+// inheritance (not today though)
 
-
-
-
-
-//this is my new variable type
-class robot() {
- private:
+// this is my new variable type.
+class robot {
+private:
+    // data members
     string name;
     int charge;
     int boredom;
@@ -30,7 +31,7 @@ public:
         status();
     }
 
-    //overload the constructor
+    // overload the constructor
     robot() {
         name = "bot";
         charge = 10;
@@ -38,21 +39,22 @@ public:
         status();
     }
 
+    // member functions
     void status() {
-        cout << "My name is" << name << ", my charge is " << charge << ".\n";
-        cout << "I am";
-
+        cout << "My name is " << name << ", my charge is " << charge << ".\n";
+        cout << "I am ";
+        
         if(boredom < 5) {
-            cout << "Happy";
+            cout << "happy";
         }
-        else if (boredom < 10) {
-            cout << "Bored";
+        else if(boredom < 10) {
+            cout << "bored";
         }
-        else if (boredom < 15) {
+        else if(boredom < 15) {
             cout << "frustrated";
         }
         else {
-            cout << "ENRAGED"
+            cout << "ENRAGED";
         }
 
         cout << ".\n";
@@ -66,60 +68,77 @@ public:
         boredom -= 1;
     }
 
+    // setter
     void setName(string givenName) {
-        if(givenName.size() < 5) {
+        if(givenName.size() <= 5) {
             name = givenName;
         }
         else {
             cout << "error: name is too long.\n";
         }
     }
+
     void setCharge(int givenCharge) {
-        if(givenCharge < 0) {
+        if(givenCharge < 0) {           // clamping value to not lower than 0
             charge = 0;
         }
-        else if (givenCharge > 100) {
+        else if(givenCharge > 100) {    // clamping not higher than 100
             charge = 100;
         }
         else {
-            charge = givenCharge
+            charge = givenCharge;
         }
     }
-};
 
+    // combined get AND set, using the clamping from setCharge.
+    void changeCharge(int amount) {
+        setCharge(charge += amount);
+    }
+
+    // getters
+    string getName() {
+        return name;
+    }
+    int getCharge() {
+        return charge;
+    }
+    int getBoredom() {
+        return boredom;
+    }
+
+};                  // don't forget the semi-colon at the end
+                    // of the class definition
 
 
 
 int main() {
-    cout << "Let's build some classees!\n";
+    cout << "let's build some classes!\n";
 
-    //creating two new variables of the typer 'robot'
-    robot artoo("R2-D2", 45,10)
-    //artoo.name = "R2-D2"
-    //artoo.charge = 45;
-    //artoo.boredom = 10;
+    // creating two new variables of the type 'robot'
+    robot artoo("R2-D2", 45, 10);       // using the constructor
+    // artoo.name = "R2-D2";
+    // artoo.charge = 45;
+    // artoo.boredom = 10;
 
     robot threepio;
-    threepio.setName("C-3PO");
-    threepio.name = 2;
+    threepio.setName("C-3PO");        // using the setter now!
+    threepio.setCharge(2);
 
-    cout << "Here's artoo: " << artoo.getname <,".\n";
+    cout << "Here's artoo: " << artoo.getName() << ".\n";
 
-    cout << artoo.name << " notices that " << threepio.name;
-    cout << "doesn't have much battery left. let's fix that.\n";
+    cout << artoo.getName() << " notices that " << threepio.getName();
+    cout << " doesn't have much battery left. Let's fix that.\n";
 
-    while(threepio.charge < 15) {
-        artoo.charge -= 1;      //subtract 1 from charge
-        threepio.charge += 1;   //add 1 to charge.
-    }   
+    while(threepio.getCharge() < 15) {
+        artoo.changeCharge(-1);          // subtract 1 from charge
+        threepio.changeCharge(1);       // add 1 to charge.
+    }
 
-    cout << "threepio's charge is now" << threepio.charge << ".\n";
-    cout << "artoo's charge is now " << artoo.charge <, ".\n";
-
-int main() {
+    cout << "threepio's charge is now " << threepio.getCharge() << ".\n";
+    cout << "artoo's charge is now " << artoo.getCharge() << ".\n";
 
 
-    //using member functions
+    // using member functions
     artoo.status();
     threepio.status();
 
@@ -128,29 +147,27 @@ int main() {
 
     while(true) {
         while(turns < 3) {
-            cout <<"What would you like to do?\n";
+            cout << "what would you like to do?\n";
             getline(cin, input);
 
             if(input == "play") {
-                cout << "Let's play with" << artoo.name << "!\n";
-                artoo.play
+                cout << "let's play with " << artoo.getName() << "!\n";
+                artoo.play();
             }
             else if(input == "status") {
-                artoo.status();
+                artoo.status();                 // TODO: add boredom to status.
             }
             turns++;
         }
         turns = 0;
         cout << "Do you want to keep playing?\n";
         getline(cin, input);
-
-        if(input == "no"){
+        
+        if(input == "no") {
             break;
         }
         artoo.newDay();
     }
-
-}
 
     return 0;
 }
